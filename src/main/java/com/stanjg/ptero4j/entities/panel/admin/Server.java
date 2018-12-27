@@ -14,7 +14,7 @@ public class Server {
     private PteroAdminAPI api;
     private String longId, name, description, uuid;
     private int shortId, allocationId, eggId, nestId, externalId, packId, nodeId, ownerId;
-    private boolean suspended;
+    private boolean suspended, free;
     private ServerContainer container;
     private ServerLimits limits;
     private FeatureLimits featureLimits;
@@ -43,7 +43,8 @@ public class Server {
                 ),
                 new FeatureLimits(
                         json.getJSONObject("feature_limits")
-                )
+                ),
+                json.getBoolean("free")
         );
     }
 
@@ -55,7 +56,7 @@ public class Server {
                    int packId, int nodeId,
                    int ownerId, boolean suspended,
                    ServerContainer container, ServerLimits limits,
-                   FeatureLimits featureLimits) {
+                   FeatureLimits featureLimits, boolean free) {
         this.api = api;
         this.longId = longId;
         this.name = name;
@@ -73,6 +74,7 @@ public class Server {
         this.container = container;
         this.limits = limits;
         this.featureLimits = featureLimits;
+        this.free = free;
     }
 
     public static ServerCreateAction create(PteroAdminAPI api) {
@@ -185,5 +187,9 @@ public class Server {
 
     public FeatureLimits getFeatureLimits() {
         return featureLimits;
+    }
+    
+    public boolean isFree() {
+        return free;   
     }
 }
