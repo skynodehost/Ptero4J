@@ -61,6 +61,7 @@ public abstract class ResourceController<T> extends Controller {
             Response response = makeApiCall(action.getEndpoint(), action.getMethod(), data);
             if (response.code() < 200 || response.code() >= 300) {
                 PteroUtils.logRequestError(response);
+                System.out.println(response.body().string());
                 return null;
             }
 
