@@ -43,7 +43,7 @@ public class ServerUpdateDetailsAction implements PteroAction<Server> {
         return this;
     }
 
-    public ServerUpdateDetailsAction setExternalId(int id) {
+    public ServerUpdateDetailsAction setExternalId(String id) {
         json.put("external_id", id);
         return this;
     }
