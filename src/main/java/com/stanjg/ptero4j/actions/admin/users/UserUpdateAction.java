@@ -49,6 +49,11 @@ public class UserUpdateAction implements PteroAction<User> {
         json.put("last_name", lastName);
         return this;
     }
+    
+    public UserUpdateAction setExternalID(String id) {
+        json.put("external_id", id);
+        return this;
+    }
 
     @Override
     public User execute() {
